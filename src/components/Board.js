@@ -31,12 +31,10 @@ const Board = () =>{
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
             setLatitude(position.coords.latitude);
-            console.log(position.coords.latitude)
             setLongitude(position.coords.longitude);
-            console.log(position.coords.longitude)
         });
         
-        axios(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&long=${longitude}&units=metric&appid=de3d843f4e334cc8ca6f0f138b737231`)
+        axios(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=de3d843f4e334cc8ca6f0f138b737231`)
             .then(response => {
                setWeather(response.data.weather[0].main)
                setDescription(response.data.weather[0].description)
