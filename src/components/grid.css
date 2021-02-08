@@ -1,0 +1,41 @@
+@media (min-width:992px) {
+    .row {
+        display: flex;
+    }
+    .col-lg-6 {
+        width: 49.8%;
+    }
+    .col-lg-12 {
+        width: 100%;
+    }
+    .col-lg-4 {
+        width: 33.2%;
+    }
+    .col-lg-8 {
+        width: 66.4%;
+    }
+}
+@media (min-width:768px) {
+    .row {
+        display: flex;
+    }
+    .col-md-1 {
+        width: 8.3%;
+    }
+    .col-md-2 {
+        width: 16.6%;
+    }
+    .col-md-3 {
+        width: 24.9%;
+    }
+    .col-md-4 {
+        width: 33.2%;
+    }
+    .col-md-6 {
+        width: 49.8%;
+    }
+    .col-md-12 {
+        width: 100%;
+    }
+    
+}
