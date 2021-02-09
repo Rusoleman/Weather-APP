@@ -14,7 +14,7 @@ const Board = () =>{
     //═════════════════Weather parametters═════════════════
     const [weather, setWeather] = useState("")
     const [description, setDescription] = useState("")
-    const [colorWeather, setColorWeather] = useState("")
+    
     //═════════════════Data parametters════════════════════
     const [temperature, setTemperature] = useState("")
     const [charset, setCharset] = useState("°C")
@@ -27,31 +27,33 @@ const Board = () =>{
     //═════════════════Position parametters════════════════
     const [latitude, setLatitude] = useState("")
     const [longitude, setLongitude] = useState("")
-    const [datap, setDatap] = useState("")//eliminate
+
+    navigator.geolocation.getCurrentPosition(position => {
+        setLatitude(position.coords.latitude);
+        setLongitude(position.coords.longitude);
+    });
+   
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
             setLatitude(position.coords.latitude);
             setLongitude(position.coords.longitude);
         });
-        
         axios(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=de3d843f4e334cc8ca6f0f138b737231`)
             .then(response => {
-               setWeather(response.data.weather[0].main)
-               setDescription(response.data.weather[0].description)
-               setTemperature(response.data.main.temp)
-               setWind(response.data.wind.speed)
-               setPressure(response.data.main.pressure)
-               setHumidity(response.data.main.humidity)
-               setIcon(response.data.weather[0].icon)
-               setCity(response.data.name)
-               setCountry(response.data.sys.country)
-               setDatap(response.data)
-            })
-            
+                setWeather(response.data.weather[0].main)
+                setDescription(response.data.weather[0].description)
+                setTemperature(response.data.main.temp)
+                setWind(response.data.wind.speed)
+                setPressure(response.data.main.pressure)
+                setHumidity(response.data.main.humidity)
+                setIcon(response.data.weather[0].icon)
+                setCity(response.data.name)
+                setCountry(response.data.sys.country)
+            })   
             .catch(err =>{
                 console.log(err)
-            }); 
-    },[])
+            });
+    },[latitude, longitude]);
 
     //═════════════════Celcius to Fahrenheit═════════════════
     const handleTemperature = () =>{
